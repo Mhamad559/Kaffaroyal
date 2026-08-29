@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KAFFA ROYAL - Digital Menu</title>
+    
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="KAFFA ROYAL">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0b0f17;
+            --bg-card: #151c28;
+            --bg-card-border: #232d3f;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-glow: rgba(212, 175, 55, 0.2);
+            --accent-green: #10b981;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            padding-bottom: 70px;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: #06090e;
+            border-bottom: 1px solid var(--bg-card-border);
+        }
+
+        .map-link {
+            font-size: 13px;
+            color: var(--gold-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pwa-install-btn {
+            background-color: var(--gold-primary);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-select-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-select-wrapper i {
+            position: absolute;
+            left: 8px;
+            color: var(--gold-light);
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        html[dir="rtl"] .lang-select-wrapper i {
+            left: auto;
+            right: 8px;
+        }
+
+        .lang-select {
+            background-color: var(--bg-card);
+            color: var(--text-light);
+            border: 1px solid var(--bg-card-border);
+            padding: 6px 28px 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+        }
+
+        html[dir="ltr"] .lang-select {
+            padding: 6px 12px 6px 28px;
+        }
+
+        /* Header Hero */
+        .hero {
+            width: 100%;
+            padding: 24px 16px;
+            background: radial-gradient(circle at top, #1e293b 0%, var(--bg-main) 100%);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--bg-card-border);
+        }
+
+        .logo-container {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: #06090e;
+            border: 2px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            box-shadow: 0 0 20px var(--gold-glow);
+            flex-shrink: 0;
+        }
+
+        .brand-logo-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .brand-info h1 {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-info p {
+            font-size: 12px;
+            color: var(--gold-light);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Social Contact Bar */
+        .contact-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--bg-card);
+            padding: 12px;
+            margin: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--bg-card-border);
+        }
+
+        .contact-item {
+            color: var(--gold-light);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .main-container { padding: 0 16px; }
+
+        /* Search & Sort Controls */
+        .search-sort-container {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input-wrapper i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 14px;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        html[dir="ltr"] .search-input-wrapper i {
+            right: auto;
+            left: 14px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 14px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        html[dir="ltr"] .search-input {
+            padding: 12px 14px 12px 40px;
+        }
+
+        .sort-select {
+            background-color: var(--bg-card);
+            color: var(--gold-light);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 12px;
+            padding: 0 12px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        /* Category Scroll List */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .categories::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background-color: var(--bg-card);
+            color: var(--text-dim);
+            border: 1px solid var(--bg-card-border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .cat-btn.active {
+            background-color: var(--gold-primary);
+            color: #000;
+            border-color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--bg-card-border);
+            transition: transform 0.2s ease;
+        }
+
+        .card-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 12px;
+            object-fit: cover;
+            background-color: #06090e;
+        }
+
+        .card-details { flex: 1; }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .discount-badge {
+            background-color: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .fav-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .fav-btn.active { color: #ef4444; }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .old-price {
+            color: var(--text-dim);
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+
+        .add-cart-btn {
+            background-color: var(--gold-primary);
+            color: #000;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Modern Feedback Banner */
+        .feedback-banner {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #06090e 100%);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .feedback-banner div h4 { color: var(--gold-light); font-size: 15px; display: flex; align-items: center; gap: 6px; }
+        .feedback-banner div p { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+
+        .open-fb-btn {
+            background-color: var(--gold-primary);
+            color: #000;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Floating Cart Mobile Bar */
+        .cart-bar {
+            position: fixed;
+            bottom: 15px;
+            left: 16px;
+            right: 16px;
+            background-color: var(--gold-primary);
+            color: #000000;
+            padding: 14px 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            box-shadow: 0 8px 25px var(--gold-glow);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-bar.hidden { transform: translateY(120px); }
+
+        /* Modals System */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 9, 14, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 200;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 500px;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px 20px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--bg-card-border);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--bg-card-border);
+            padding-bottom: 12px;
+        }
+
+        .modal-header h3 { color: var(--gold-light); display: flex; align-items: center; gap: 8px; font-size: 16px; }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0 20px 0;
+            font-size: 28px;
+            color: var(--bg-card-border);
+            cursor: pointer;
+        }
+
+        .rating-stars .fa-star.active { color: var(--gold-primary); }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .tag-chip {
+            background-color: var(--bg-main);
+            color: var(--text-dim);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: 1px solid var(--bg-card-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .tag-chip.selected {
+            background-color: var(--gold-glow);
+            color: var(--gold-light);
+            border-color: var(--gold-primary);
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            height: 90px;
+            background-color: var(--bg-main);
+            border: 1px solid var(--bg-card-border);
+            border-radius: 12px;
+            padding: 12px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            resize: none;
+            margin-bottom: 18px;
+        }
+
+        .feedback-textarea:focus { border-color: var(--gold-primary); }
+
+        .submit-btn {
+            background-color: var(--gold-primary);
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            flex: 1;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-main);
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--bg-card-border);
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background: var(--gold-primary);
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .whatsapp-send-btn {
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .developer-footer {
+            margin-top: 40px;
+            padding: 24px 16px;
+            border-top: 1px solid var(--bg-card-border);
+            text-align: center;
+            background-color: #06090e;
+            color: var(--text-dim);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .developer-footer strong {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .developer-footer a {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 6px;
+            display: inline-block;
+            direction: ltr;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="https://maps.google.com/?q=Saholaka+Sulaymaniyah" target="_blank" class="map-link">
+            <i class="fa-solid fa-location-dot"></i>
+            <span id="txt-location">سلێمانی، شەقامی سەهۆڵەکە</span>
+        </a>
+        <div class="top-right-actions">
+            <button id="pwaInstallBtn" class="pwa-install-btn">
+                <i class="fa-solid fa-download"></i>
+                <span id="txt-install">داگرتنی ئەپ</span>
+            </button>
+            <div class="lang-select-wrapper">
+                <i class="fa-solid fa-globe"></i>
+                <select class="lang-select" id="langSelect">
+                    <option value="ckb">کوردی</option>
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="logo-container">
+            <svg class="brand-logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="95" fill="#06090e"/>
+                <circle cx="100" cy="100" r="88" stroke="#d4af37" stroke-width="3" stroke-dasharray="6 4"/>
+                <path d="M 35 95 C 65 70, 135 130, 165 105 C 155 50, 120 25, 100 25 C 60 25, 40 50, 35 95 Z" fill="#d4af37"/>
+                <path d="M 35 105 C 65 80, 135 140, 165 115 C 155 160, 120 175, 100 175 C 60 175, 40 150, 35 105 Z" fill="#aa820a"/>
+                <text x="50%" y="42%" dominant-baseline="middle" text-anchor="middle" fill="#f8fafc" font-family="sans-serif" font-weight="900" font-size="24" letter-spacing="2">KAFFA</text>
+                <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" fill="#f3e5ab" font-family="sans-serif" font-weight="900" font-size="22" letter-spacing="3">ROYAL</text>
+            </svg>
+        </div>
+        <div class="brand-info">
+            <h1 id="txt-title">KAFFA ROYAL</h1>
+            <p id="txt-subtitle"><i class="fa-regular fa-clock"></i> باشترین قاوەی ڕەسەن و ژەمەکان (8 AM - 12 AM)</p>
+        </div>
+    </div>
+
+    <div class="contact-bar">
+        <a href="tel:+9647700000000" class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span id="txt-call">پەیوەندی</span>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="contact-item">
+            <i class="fa-brands fa-instagram"></i>
+            <span id="txt-ig">ئینیستاگرام</span>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="contact-item">
+            <i class="fa-brands fa-facebook"></i>
+            <span id="txt-fb">فەیسبووک</span>
+        </a>
+        <a href="https://wa.me/9647700000000" target="_blank" class="contact-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span id="txt-wa">واتسئاپ</span>
+        </a>
+    </div>
+
+    <div class="main-container">
+
+        <div class="search-sort-container">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="گەڕان بۆ خواردن یان خواردنەوە...">
+            </div>
+            <select id="sortSelect" class="sort-select">
+                <option value="default" id="opt-sort-default">ڕێکخستن</option>
+                <option value="low-high" id="opt-sort-low">لە هەرزانەوە</option>
+                <option value="high-low" id="opt-sort-high">لە گرانەوە</option>
+            </select>
+        </div>
+
+        <div class="categories" id="categoryContainer">
+            <button class="cat-btn active" data-category="all" id="cat-all"><i class="fa-solid fa-layer-group"></i> هەمووی</button>
+            <button class="cat-btn" data-category="fav" id="cat-fav"><i class="fa-solid fa-heart"></i> دڵخوازەکان</button>
+            <button class="cat-btn" data-category="hot" id="cat-hot"><i class="fa-solid fa-mug-hot"></i> قاوەی گەرم</button>
+            <button class="cat-btn" data-category="cold" id="cat-cold"><i class="fa-solid fa-glass-water"></i> خواردنەوە ساردەکان</button>
+            <button class="cat-btn" data-category="sweets" id="cat-sweets"><i class="fa-solid fa-cake-candles"></i> شیرینی</button>
+            <button class="cat-btn" data-category="food" id="cat-food"><i class="fa-solid fa-utensils"></i> ژەمەکان</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <div class="feedback-banner">
+            <div>
+                <h4 id="txt-fb-banner-title"><i class="fa-solid fa-star"></i> ڕا و سەرنجی تۆ</h4>
+                <p id="txt-fb-banner-desc">یارمەتیمان بده بۆ باشترکردنی خزمەتگوزارییەکانمان</p>
+            </div>
+            <button class="open-fb-btn" onclick="openFeedbackModal()" id="txt-fb-banner-btn">تۆمارکردن</button>
+        </div>
+
+    </div>
+
+    <div class="cart-bar hidden" id="cartBar" onclick="openCartModal()">
+        <span><i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span> <span id="txt-items">ئایتم</span></span>
+        <span><span id="txt-total">کۆی گشتی:</span> <span id="cartTotal">0</span> <span class="curr-txt">د.ع</span></span>
+    </div>
+
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="txt-cart-title"><i class="fa-solid fa-basket-shopping"></i> سەبەتەی داواکارییەکان</h3>
+                <button class="close-btn" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList"></div>
+            <button class="whatsapp-send-btn" onclick="sendWhatsAppOrder()">
+                <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
+                <span id="txt-send-wa">ناردنی داواکاری بۆ واتسئاپ</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="txt-fb-modal-title"><i class="fa-solid fa-award"></i> هەڵسەنگاندنی خزمەتگوزاری</h3>
+                <button class="close-btn" onclick="closeFeedbackModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="rating-stars" id="ratingStars">
+                <i class="fa-solid fa-star" data-rating="1"></i>
+                <i class="fa-solid fa-star" data-rating="2"></i>
+                <i class="fa-solid fa-star" data-rating="3"></i>
+                <i class="fa-solid fa-star" data-rating="4"></i>
+                <i class="fa-solid fa-star" data-rating="5"></i>
+            </div>
+            <div class="tags-container" id="feedbackTags"></div>
+            <textarea id="feedbackText" class="feedback-textarea"></textarea>
+            <button class="submit-btn" onclick="sendFeedback()" id="txt-fb-submit">ناردنی هەڵسەنگاندن</button>
+        </div>
+    </div>
+
+    <footer class="developer-footer">
+        <p id="txt-footer-thanks">سوپاس بۆ بەکارهێنانی مێنیوی دیجیتاڵیی <strong>KAFFA ROYAL</strong></p>
+        <p><span id="txt-footer-dev">گەشەپێدراوە لەلایەن:</span> <strong id="txt-developer-name">محەمەد دلێر محەمەد</strong></p>
+        <p id="txt-footer-contact">بۆ دروستکردنی سیستەم و بەرنامە پەیوەندی بکەن:</p>
+        <a href="tel:+9647700000000"><i class="fa-solid fa-phone"></i> +964 770 000 0000</a>
+    </footer>
+
+    <script>
+        const cafeWhatsappNumber = "9647700000000";
+
+        const manifestData = {
+            "name": "KAFFA ROYAL",
+            "short_name": "KAFFA",
+            "start_url": ".",
+            "display": "standalone",
+            "background_color": "#0b0f17",
+            "theme_color": "#151c28",
+            "icons": [{
+                "src": "https://cdn-icons-png.flaticon.com/512/924/924514.png",
+                "sizes": "512x512",
+                "type": "image/png"
+            }]
+        };
+
+        const stringManifest = JSON.stringify(manifestData);
+        const blob = new Blob([stringManifest], {type: 'application/json'});
+        const manifestURL = URL.createObjectURL(blob);
+        const link = document.createElement('link');
+        link.rel = 'manifest';
+        link.href = manifestURL;
+        document.head.appendChild(link);
+
+        document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) { event.preventDefault(); }
+            lastTouchEnd = now;
+        }, false);
+
+        const i18n = {
+            ckb: {
+                location: "سلێمانی، شەقامی سەهۆڵەکە",
+                title: "KAFFA ROYAL",
+                subtitle: "باشترین قاوەی ڕەسەن و ژەمەکان (8 AM - 12 AM)",
+                call: "پەیوەندی", ig: "ئینیستاگرام", fb: "فەیسبووک", wa: "واتسئاپ", install: "داگرتنی ئەپ",
+                searchPlaceholder: "گەڕان بۆ خواردن یان خواردنەوە...",
+                sortDefault: "ڕێکخستن", sortLow: "لە هەرزانەوە", sortHigh: "لە گرانەوە",
+                catAll: "هەمووی", catFav: "دڵخوازەکان", catHot: "قاوەی گەرم", catCold: "خواردنەوە ساردەکان", catSweets: "شیرینی", catFood: "ژەمەکان",
+                addBtn: "زیادکردن", items: "ئایتم", total: "کۆی گشتی:", cartTitle: "سەبەتەی داواکارییەکان", sendWa: "ناردنی داواکاری بۆ واتسئاپ",
+                noResult: "ببورە، هیچ ئایتمێک نەدۆزرایەوە...", currency: "د.ع",
+                fbBannerTitle: "ڕا و سەرنجی تۆ", fbBannerDesc: "یارمەتیمان بده بۆ باشترکردنی خزمەتگوزارییەکانمان", fbBannerBtn: "تۆمارکردن",
+                fbModalTitle: "هەڵسەنگاندنی خزمەتگوزاری", fbSubmit: "ناردنی هەڵسەنگاندن", fbPlaceholder: "تێبینی یان پێشنیازەکەت بنووسە...",
+                footerThanks: "سوپاس بۆ بەکارهێنانی مێنیوی دیجیتاڵیی",
+                footerDev: "گەشەپێدراوە لەلایەن:",
+                devName: "محەمەد دلێر محەمەد",
+                footerContact: "بۆ دروستکردنی سیستەم و بەرنامە پەیوەندی بکەن:",
+                tags: [
+                    { id: "fast", icon: "fa-bolt", label: "خزمەتگوزاری خێرا" },
+                    { id: "taste", icon: "fa-mug-hot", label: "قاوەی بەتام و بەچێژ" },
+                    { id: "clean", icon: "fa-sparkles", label: "شوێنی پاک و خاوێن" },
+                    { id: "staff", icon: "fa-user-check", label: "کارمەندی بەڕێز" }
+                ]
+            },
+            ar: {
+                location: "السليمانية، شارع السهولكة",
+                title: "كافا رويال",
+                subtitle: "أفضل القهوة الأصيلة والوجبات (8 AM - 12 AM)",
+                call: "اتصال", ig: "إنستغرام", fb: "فيسبوك", wa: "واتساب", install: "تثبيت التطبيق",
+                searchPlaceholder: "البحث عن المأكولات والمشروبات...",
+                sortDefault: "ترتيب", sortLow: "من الأرخص", sortHigh: "من الأغلى",
+                catAll: "الكل", catFav: "المفضلة", catHot: "قهوة ساخنة", catCold: "مشروبات باردة", catSweets: "الحلويات", catFood: "الوجبات",
+                addBtn: "إضافة", items: "عناصر", total: "المجموع الكلي:", cartTitle: "سلة الطلبات", sendWa: "إرسال الطلب عبر الواتساب",
+                noResult: "عذراً، لم يتم العثور على أية عناصر...", currency: "د.ع",
+                fbBannerTitle: "رأيك يهمنا", fbBannerDesc: "ساعدنا في تحسين خدماتنا باستمرار", fbBannerBtn: "تقييم الآن",
+                fbModalTitle: "تقييم الخدمة", fbSubmit: "إرسال التقييم", fbPlaceholder: "اكتب ملاحظاتك أو اقتراحاتك هنا...",
+                footerThanks: "شكراً لاستخدامكم المنيو الرقمي لـ",
+                footerDev: "تم التطوير بواسطة:",
+                devName: "محمد دلير محمد",
+                footerContact: "لتطوير الأنظمة والتطبيقات يرجى الاتصال بـ:",
+                tags: [
+                    { id: "fast", icon: "fa-bolt", label: "خدمة سريعة" },
+                    { id: "taste", icon: "fa-mug-hot", label: "قهوة لذيذة" },
+                    { id: "clean", icon: "fa-sparkles", label: "مكان نظيف" },
+                    { id: "staff", icon: "fa-user-check", label: "طاقم ودود" }
+                ]
+            },
+            en: {
+                location: "Sulaymaniyah, Saholaka St.",
+                title: "KAFFA ROYAL",
+                subtitle: "Premium Coffee & Delicious Meals (8 AM - 12 AM)",
+                call: "Call", ig: "Instagram", fb: "Facebook", wa: "WhatsApp", install: "Install App",
+                searchPlaceholder: "Search food or drinks...",
+                sortDefault: "Sort By", sortLow: "Price: Low to High", sortHigh: "Price: High to Low",
+                catAll: "All", catFav: "Favorites", catHot: "Hot Coffee", catCold: "Cold Drinks", catSweets: "Sweets", catFood: "Meals",
+                addBtn: "Add", items: "items", total: "Total:", cartTitle: "Order Cart", sendWa: "Send Order via WhatsApp",
+                noResult: "Sorry, no items found...", currency: "IQD",
+                fbBannerTitle: "Rate Your Experience", fbBannerDesc: "Help us improve our service & quality", fbBannerBtn: "Rate Us",
+                fbModalTitle: "Service Evaluation", fbSubmit: "Submit Review", fbPlaceholder: "Write your feedback or suggestions here...",
+                footerThanks: "Thank you for using the digital menu of",
+                footerDev: "Developed by:",
+                devName: "Mhamad Dler Mhamad",
+                footerContact: "For custom systems & software development contact:",
+                tags: [
+                    { id: "fast", icon: "fa-bolt", label: "Fast Service" },
+                    { id: "taste", icon: "fa-mug-hot", label: "Delicious Coffee" },
+                    { id: "clean", icon: "fa-sparkles", label: "Clean Atmosphere" },
+                    { id: "staff", icon: "fa-user-check", label: "Friendly Staff" }
+                ]
+            }
+        };
+
+        const menuItems = [
+            // Hot Coffee (1 - 7)
+            { id: 1, priceNum: 1500, oldPriceNum: 2500, hasDiscount: true, category: "hot", image: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "ئیسپرێسۆی تاک", ar: "إسبريسو سينجل", en: "Single Espresso" }, desc: { ckb: "شۆتێکی خەست لە قاوەی ڕەسەن و تازە برژێنراو", ar: "جرعة مركزة من القهوة الطازجة", en: "Rich fresh single espresso shot" } },
+            { id: 2, priceNum: 3500, category: "hot", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "ئیسپرێسۆی دەبڵ", ar: "إسبريسو دبل", en: "Double Espresso" }, desc: { ckb: "دوو شۆتی بەهێز لە قاوەی بەڕێژەی بەرزی کافایین", ar: "جرعة مضاعفة غنية بالقهوة", en: "Double shot of rich roasted espresso" } },
+            { id: 3, priceNum: 4000, category: "hot", image: "https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کاپوچینۆ", ar: "كابوتشينو", en: "Cappuccino" }, desc: { ckb: "ئیسپرێسۆ لەگەڵ شیری گەرمکراو و کەفی شیر", ar: "إسبريسو مع حليب مبخر ورغوة غنية", en: "Espresso with steamed milk foam" } },
+            { id: 4, priceNum: 4000, category: "hot", image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کافێ لاتێ", ar: "كافيه لاتيه", en: "Caffè Latte" }, desc: { ckb: "قاوەی ئیسپرێسۆ بە تێکەڵەی شیری مەخمەری گەرم", ar: "إسبريسو ناعم مع حليب ساخن غني", en: "Smooth espresso with steamed velvet milk" } },
+            { id: 5, priceNum: 4500, category: "hot", image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "فلات وایت", ar: "فلات وايت", en: "Flat White" }, desc: { ckb: "دوانە شۆتی ئیسپرێسۆ لەگەڵ کەفێکی ناوازەی شیر", ar: "جرعة مضاعفة مع رغوة حليب ناعمة", en: "Double shot espresso with microfoam" } },
+            { id: 6, priceNum: 4500, category: "hot", image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "مۆکا کەرامێل", ar: "موكا كراميل", en: "Caramel Mocha" }, desc: { ckb: "تێکەڵەی شوکولاتە، کەرامێل و ئیسپرێسۆی گەرم", ar: "مزيج الشوكولاتة والكراميل والقهوة", en: "Espresso with rich chocolate & caramel syrup" } },
+            { id: 7, priceNum: 3000, category: "hot", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "قاوەی تورکی", ar: "قهوة تركية", en: "Turkish Coffee" }, desc: { ckb: "قاوەی کوڵاوی ڕەسەن لەسەر خۆڵەمێش یان ئاگر", ar: "قهوة مغليّة تقليدية غنية بالطعم", en: "Traditional finely ground boiled coffee" } },
+
+            // Cold Drinks (8 - 17) - Fanta Sham Added Here
+            { id: 8, priceNum: 500, category: "cold", image: "https://images.unsplash.com/photo-1624552184280-9e9632bbeee9?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "فانتای شەم", ar: "فانتا شام", en: "Fanta Sham" }, desc: { ckb: "خواردنەوەی گازی فێنککەرەوە و بەتام", ar: "مشروب غازي منعش بنكهة مميزة", en: "Refreshing flavored carbonated soft drink" } },
+            { id: 9, priceNum: 7000, category: "cold", image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کۆکا کۆلا", ar: "كوكا كولا", en: "Coca Cola" }, desc: { ckb: "خواردنەوەی گازی سارد و فێنککەرەوە", ar: "مشروب غازي بارد ومنعش", en: "Chilled refreshing soft drink" } },
+            { id: 10, priceNum: 4500, category: "cold", image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "ئایس سپانیش لاتێ", ar: "سبانيش لاتيه بارد", en: "Iced Spanish Latte" }, desc: { ckb: "قاوەی سارد لەگەڵ شیری شێرینکراو و سەهۆڵ", ar: "قهوة باردة مع الحليب المحلى والثلج", en: "Cold espresso with sweet condensed milk" } },
+            { id: 11, priceNum: 4500, category: "cold", image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "ئایس ئەمریکانۆ", ar: "آيس أمريكانو", en: "Iced Americano" }, desc: { ckb: "ئیسپرێسۆی سارد بە ئاوی بەفرین و سەهۆڵ", ar: "إسبريسو بارد مع ماء وثلج", en: "Espresso shot over chilled water and ice" } },
+            { id: 12, priceNum: 5000, category: "cold", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "ئایس کارامێل ماکیاتۆ", ar: "آيس كراميل ماكياتو", en: "Iced Caramel Macchiato" }, desc: { ckb: "شیری سارد، ڤانێلا، ئیسپرێسۆ و سۆسی کەرامێل", ar: "حليب بارد مع فانيليا وإسبريسو وكراميل", en: "Cold milk, vanilla, espresso & caramel drizzle" } },
+            { id: 13, priceNum: 4000, category: "cold", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "مۆهیتۆی لیمۆ و نەعناع", ar: "موخيتو الليمون والنعناع", en: "Lemon Mint Mojito" }, desc: { ckb: "خواردنەوەی گازی بە لیمۆی فرێش و نەعناع", ar: "مشروب غازي منعش بالليمون والنعناع", en: "Refreshing fresh lemon mint soda" } },
+            { id: 14, priceNum: 4500, category: "cold", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "مۆهیتۆی شلیک", ar: "موخيتو الفراولة", en: "Strawberry Mojito" }, desc: { ckb: "مۆهیتۆی سارد بە تامی شلیکی فرێش", ar: "موخيتو بارد بطعم الفراولة الطازجة", en: "Cold soda mojito with fresh strawberry flavor" } },
+            { id: 15, priceNum: 4500, category: "cold", image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "بلۆ ڵاگۆن", ar: "بلو لاجون", en: "Blue Lagoon Soda" }, desc: { ckb: "خواردنەوەیەکی گازی شین و ساردی فێنککەرەوە", ar: "مشروب أزرق غازي منعش ولذيذ", en: "Vibrant blue soda beverage with citrus twist" } },
+            { id: 16, priceNum: 5500, category: "cold", image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "میڵک شەیكی نۆتێلا", ar: "ميلك شيك نوتيلا", en: "Nutella Milkshake" }, desc: { ckb: "تێکەڵەی ئایسکرێم و شوکولاتەی نۆتێلای دەوڵەمەند", ar: "مزيج الآيس كريم مع شوكولاتة نوتيلا الغنية", en: "Creamy vanilla ice cream blended with Nutella" } },
+            { id: 17, priceNum: 5500, category: "cold", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "میڵک شەیكی لۆتۆس", ar: "ميلك شيك لوتس", en: "Lotus Milkshake" }, desc: { ckb: "میکسی ئایسکرێم بە بەسکویتی لۆتۆسی هاڕراو", ar: "ميلك شيك غني بزبذة وبسكويت اللوتس", en: "Blended milkshake with crushed Lotus biscoff" } },
+
+            // Sweets & Desserts (18 - 24)
+            { id: 18, priceNum: 5000, category: "sweets", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کێکی لۆڤای شوکولاتە", ar: "كيكة الشوكولاتة مولتن", en: "Choco Lava Cake" }, desc: { ckb: "کێکی گەرمی شوکولاتە بەناو تێکەڵەی شوکولاتەی تواوە", ar: "كيكة الشوكولاتة الساخنة محشوة بالشوكولاتة", en: "Warm chocolate cake with chocolate center" } },
+            { id: 19, priceNum: 5500, category: "sweets", image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "چیزکێکی سان سێباستیان", ar: "سان سيباستيان تشيز كيك", en: "San Sebastian Cheesecake" }, desc: { ckb: "چیزکێکی برژاوی بەڕێز بە تامی کرێمی دەوڵەمەند", ar: "تشيز كيك مخبوز على الطريقة الإسبانية", en: "Creamy burnt Spanish style cheesecake" } },
+            { id: 20, priceNum: 4500, category: "sweets", image: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "تیرامیسوو", ar: "تيراميسو إيطالي", en: "Classic Tiramisu" }, desc: { ckb: "شیرینی ئیتاڵی بە تامی ئیسپرێسۆ و پنێری ماسکارپۆنێ", ar: "حلوى إيطالية كلاسيكية بنكهة الإسبريسو", en: "Italian dessert layered with espresso & mascarpone" } },
+            { id: 21, priceNum: 5000, category: "sweets", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کێکی شلیک", ar: "كيك الفراولة", en: "Strawberry Cake" }, desc: { ckb: "پارچە کێکی نەرم بە کرێمی دیاری و شلیکی تازە", ar: "شريحة كيك الفراولة اللذيذة بالكريمة", en: "Soft layered cake with cream and strawberries" } },
+            { id: 22, priceNum: 6000, category: "sweets", image: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "وافیلی نۆتێلا و میوە", ar: "وافل بالنوتيلا والفواكة", en: "Nutella Fruit Waffle" }, desc: { ckb: "وافیلی گەرم بە شوکولاتەی نۆتێلا، مۆز و شلیک", ar: "وافل ساخن مغطى بالنوتيلا والفواكه الطازجة", en: "Crispy waffle topped with Nutella & fresh fruits" } },
+            { id: 23, priceNum: 5500, category: "sweets", image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "پانکێک بە هەنگوین و بەڕەزا", ar: "بان كيك بالعسل", en: "Pancakes with Honey" }, desc: { ckb: "کۆمەڵێک پانکێکی نەرم بە هەنگوین و کەرەی فرێش", ar: "طبقات البان كيك مع العسل والزبدة", en: "Stack of fluffy pancakes served with honey & butter" } },
+            { id: 24, priceNum: 4000, category: "sweets", image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کوکیزی شوکولاتە chip", ar: "كوكيز بالشوكولاتة", en: "Chocolate Chip Cookie" }, desc: { ckb: "کوکیزی گەرم بە دەنکۆڵەی شوکولاتەی تواوەوە", ar: "كوكيز طازجة ومقرمشة بقطع الشوكولاتة", en: "Freshly baked cookie packed with choc chips" } },
+
+            // Food & Meals (25 - 32)
+            { id: 25, priceNum: 6500, category: "food", image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کڵەب ساندویچ", ar: "كلاب ساندويتش", en: "Club Sandwich" }, desc: { ckb: "ساندویچی مریشک و پەنیر پێشکەش دەکرێت لەگەڵ پەتاتە", ar: "ساندويتش الدجاج والجبن يقدم مع البطاطس", en: "Chicken & cheese sandwich with fries" } },
+            { id: 26, priceNum: 7500, category: "food", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کلاسیک بەش برگر", ar: "برغر كلاسيك", en: "Classic Beef Burger" }, desc: { ckb: "گۆشتی مانگا، پەنیر، تەماتە، کاهو و سۆسی تایبەت", ar: "لحم بقر طازج مع الجبن والصوص الخاص", en: "Juicy beef patty with cheese & house sauce" } },
+            { id: 27, priceNum: 7000, category: "food", image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "کریسبی چیکن برگر", ar: "برغر دجاج مقرمش", en: "Crispy Chicken Burger" }, desc: { ckb: "سیپریسكی مریشکی سوورکراوە بە پەنیر و مایۆنیز", ar: "دجاج مقرمش مع الجبن والمايونيز", en: "Crispy fried chicken fillet with cheese & mayo" } },
+            { id: 28, priceNum: 6000, category: "food", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "سەڵاتەی سیزەر بە مریشک", ar: "سلطة قيصر بالدجاج", en: "Chicken Caesar Salad" }, desc: { ckb: "کاهو، سنگی مریشکی برژاو، پارمێزان و درێسینگ", ar: "خس، دجاج مشوي، جبن بارميزان وصوص قيصر", en: "Fresh romaine lettuce, grilled chicken & parmesan" } },
+            { id: 29, priceNum: 3500, category: "food", image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "پەتاتەی سوورکراوە (French Fries)", ar: "بطاطس مقلية", en: "French Fries" }, desc: { ckb: "پەتاتەی زێڕینی سوورکراوە لەگەڵ سۆسی کاتشاپ", ar: "بطاطس مقلية مقرمشة تقدم مع الكاتشب", en: "Crispy golden french fries served with ketchup" } },
+            { id: 30, priceNum: 5500, category: "food", image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "پیتزای مارگاریتا", ar: "بيتزا مارغريتا", en: "Margherita Pizza" }, desc: { ckb: "پیتزای ئیتالی بە سۆسی تەماتە و پنێری موزاریلا", ar: "بيتزا إيطالية بصلصة الطماطم وجبن الموزاريلا", en: "Classic Italian pizza with tomato sauce & mozzarella" } },
+            { id: 31, priceNum: 7500, category: "food", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "پیتزای پپڕۆنی", ar: "بيتزا ببروني", en: "Pepperoni Pizza" }, desc: { ckb: "پیتزا بە پارچەکانی پپڕۆنی گۆشت و پنێری تواوە", ar: "بيتزا مغطاة بشرائح الببروني وجبن الموزاريلا", en: "Loaded with sliced beef pepperoni & melted cheese" } },
+            { id: 32, priceNum: 5000, category: "food", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400&auto=format&fit=crop", isFav: false, name: { ckb: "تۆستی پەنیر و گۆشت", ar: "توست الجبن واللحم", en: "Cheese & Beef Toast" }, desc: { ckb: "نانی تۆستکراو بە تێکەڵەی پەنیر و گۆشت", ar: "خبز توست محمص باللحم والجبن الذائب", en: "Toasted bread filled with melted cheese & beef" } }
+        ];
+
+        let currentLang = 'ckb';
+        let currentCategory = 'all';
+        let selectedRating = 0;
+        let selectedTags = [];
+        let cart = {};
+
+        const menuGrid = document.getElementById('menuGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const catButtons = document.querySelectorAll('.cat-btn');
+        const langSelect = document.getElementById('langSelect');
+        const cartBar = document.getElementById('cartBar');
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+
+            document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
+            document.documentElement.setAttribute('lang', lang);
+
+            document.getElementById('txt-location').innerText = t.location;
+            document.getElementById('txt-title').innerText = t.title;
+            document.getElementById('txt-subtitle').innerHTML = `<i class="fa-regular fa-clock"></i> ${t.subtitle}`;
+            document.getElementById('txt-call').innerText = t.call;
+            document.getElementById('txt-ig').innerText = t.ig;
+            document.getElementById('txt-fb').innerText = t.fb;
+            document.getElementById('txt-wa').innerText = t.wa;
+            document.getElementById('txt-install').innerText = t.install;
+
+            searchInput.placeholder = t.searchPlaceholder;
+            document.getElementById('opt-sort-default').innerText = t.sortDefault;
+            document.getElementById('opt-sort-low').innerText = t.sortLow;
+            document.getElementById('opt-sort-high').innerText = t.sortHigh;
+
+            document.getElementById('cat-all').innerHTML = `<i class="fa-solid fa-layer-group"></i> ${t.catAll}`;
+            document.getElementById('cat-fav').innerHTML = `<i class="fa-solid fa-heart"></i> ${t.catFav}`;
+            document.getElementById('cat-hot').innerHTML = `<i class="fa-solid fa-mug-hot"></i> ${t.catHot}`;
+            document.getElementById('cat-cold').innerHTML = `<i class="fa-solid fa-glass-water"></i> ${t.catCold}`;
+            document.getElementById('cat-sweets').innerHTML = `<i class="fa-solid fa-cake-candles"></i> ${t.catSweets}`;
+            document.getElementById('cat-food').innerHTML = `<i class="fa-solid fa-utensils"></i> ${t.catFood}`;
+
+            document.getElementById('txt-items').innerText = t.items;
+            document.getElementById('txt-total').innerText = t.total;
+            document.getElementById('txt-cart-title').innerHTML = `<i class="fa-solid fa-basket-shopping"></i> ${t.cartTitle}`;
+            document.getElementById('txt-send-wa').innerText = t.sendWa;
+
+            document.getElementById('txt-fb-banner-title').innerHTML = `<i class="fa-solid fa-star"></i> ${t.fbBannerTitle}`;
+            document.getElementById('txt-fb-banner-desc').innerText = t.fbBannerDesc;
+            document.getElementById('txt-fb-banner-btn').innerText = t.fbBannerBtn;
+
+            document.getElementById('txt-fb-modal-title').innerHTML = `<i class="fa-solid fa-award"></i> ${t.fbModalTitle}`;
+            document.getElementById('txt-fb-submit').innerText = t.fbSubmit;
+            document.getElementById('feedbackText').placeholder = t.fbPlaceholder;
+
+            document.getElementById('txt-footer-thanks').innerHTML = `${t.footerThanks} <strong>KAFFA ROYAL</strong>`;
+            document.getElementById('txt-footer-dev').innerText = t.footerDev;
+            document.getElementById('txt-developer-name').innerText = t.devName;
+            document.getElementById('txt-footer-contact').innerText = t.footerContact;
+
+            const tagsContainer = document.getElementById('feedbackTags');
+            tagsContainer.innerHTML = t.tags.map(tag => `
+                <span class="tag-chip ${selectedTags.includes(tag.label) ? 'selected' : ''}" data-label="${tag.label}">
+                    <i class="fa-solid ${tag.icon}"></i> ${tag.label}
+                </span>
+            `).join('');
+
+            document.querySelectorAll('.tag-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chip.classList.toggle('selected');
+                    const label = chip.dataset.label;
+                    if (selectedTags.includes(label)) {
+                        selectedTags = selectedTags.filter(t => t !== label);
+                    } else {
+                        selectedTags.push(label);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.curr-txt').forEach(el => el.innerText = t.currency);
+
+            filterAndRender();
+            updateCartUI();
+        }
+
+        langSelect.addEventListener('change', (e) => changeLanguage(e.target.value));
+
+        function renderMenu(items) {
+            const t = i18n[currentLang];
+            if (items.length === 0) {
+                menuGrid.innerHTML = `<div class="no-result">${t.noResult}</div>`;
+                return;
+            }
+
+            const html = items.map(item => `
+                <div class="card">
+                    <img src="${item.image}" alt="${item.name[currentLang]}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop'">
+                    <div class="card-details">
+                        <div class="card-header-flex">
+                            <h3 class="card-title">
+                                ${item.name[currentLang]}
+                                ${item.hasDiscount ? `<span class="discount-badge">${currentLang === 'en' ? 'Sale' : (currentLang === 'ar' ? 'خصم' : 'داشکان')}</span>` : ''}
+                            </h3>
+                            <button class="fav-btn ${item.isFav ? 'active' : ''}" onclick="toggleFav(${item.id})">
+                                <i class="fa-${item.isFav ? 'solid' : 'regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                        <p class="card-desc">${item.desc[currentLang]}</p>
+                        <div class="card-footer">
+                            <div class="price-container">
+                                <span class="price">${item.priceNum.toLocaleString()} ${t.currency}</span>
+                                ${item.hasDiscount ? `<span class="old-price">${item.oldPriceNum.toLocaleString()} ${t.currency}</span>` : ''}
+                            </div>
+                            <button class="add-cart-btn" onclick="addToCart(${item.id})">
+                                <i class="fa-solid fa-plus"></i> ${t.addBtn}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            menuGrid.innerHTML = html;
+        }
+
+        function toggleFav(id) {
+            const item = menuItems.find(i => i.id === id);
+            if (item) {
+                item.isFav = !item.isFav;
+                filterAndRender();
+            }
+        }
+
+        function filterAndRender() {
+            let filtered = [...menuItems];
+
+            if (currentCategory === 'fav') {
+                filtered = filtered.filter(i => i.isFav);
+            } else if (currentCategory !== 'all') {
+                filtered = filtered.filter(i => i.category === currentCategory);
+            }
+
+            const query = searchInput.value.toLowerCase().trim();
+            if (query) {
+                filtered = filtered.filter(i => 
+                    i.name[currentLang].toLowerCase().includes(query) || 
+                    i.desc[currentLang].toLowerCase().includes(query)
+                );
+            }
+
+            const sortVal = sortSelect.value;
+            if (sortVal === 'low-high') {
+                filtered.sort((a, b) => a.priceNum - b.priceNum);
+            } else if (sortVal === 'high-low') {
+                filtered.sort((a, b) => b.priceNum - a.priceNum);
+            }
+
+            renderMenu(filtered);
+        }
+
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.cat-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                filterAndRender();
+            });
+        });
+
+        searchInput.addEventListener('input', filterAndRender);
+        sortSelect.addEventListener('change', filterAndRender);
+
+        function openFeedbackModal() { document.getElementById('feedbackModal').classList.add('active'); }
+        function closeFeedbackModal() { document.getElementById('feedbackModal').classList.remove('active'); }
+
+        const stars = document.querySelectorAll('#ratingStars .fa-star');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = star.dataset.rating;
+                stars.forEach((s, idx) => {
+                    if (idx < selectedRating) s.classList.add('active');
+                    else s.classList.remove('active');
+                });
+            });
+        });
+
+        function sendFeedback() {
+            const text = document.getElementById('feedbackText').value.trim();
+            if (selectedRating === 0 && selectedTags.length === 0 && !text) {
+                alert("تکایە سەرەتا پلەیەک یان خاڵێک دیاری بکە.");
+                return;
+            }
+
+            let msg = `*هەڵسەنگاندنی نوێ - KAFFA ROYAL*\n-------------------------\n`;
+            msg += `پلە: ${selectedRating} / 5\n`;
+            if (selectedTags.length > 0) msg += `خاڵەکان: ${selectedTags.join(', ')}\n`;
+            if (text) msg += `تێبینی: ${text}\n`;
+
+            window.open(`https://wa.me/${cafeWhatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+            closeFeedbackModal();
+        }
+
+        function addToCart(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            updateCartUI();
+        }
+
+        function updateCartQuantity(id, change) {
+            if (cart[id]) {
+                cart[id] += change;
+                if (cart[id] <= 0) delete cart[id];
+            }
+            updateCartUI();
+            renderCartModalList();
+        }
+
+        function updateCartUI() {
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            for (let id in cart) {
+                const item = menuItems.find(i => i.id == id);
+                if (item) {
+                    totalItems += cart[id];
+                    totalPrice += item.priceNum * cart[id];
+                }
+            }
+
+            document.getElementById('cartCount').innerText = totalItems;
+            document.getElementById('cartTotal').innerText = totalPrice.toLocaleString();
+
+            if (totalItems > 0) cartBar.classList.remove('hidden');
+            else {
+                cartBar.classList.add('hidden');
+                closeCartModal();
+            }
+        }
+
+        function openCartModal() {
+            renderCartModalList();
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function closeCartModal() { document.getElementById('cartModal').classList.remove('active'); }
+
+        function renderCartModalList() {
+            const t = i18n[currentLang];
+            const listContainer = document.getElementById('cartItemsList');
+            let html = '';
+
+            for (let id in cart) {
+                const item = menuItems.find(i => i.id == id);
+                if (item) {
+                    html += `
+                        <div class="cart-item-row">
+                            <div>
+                                <div style="font-weight: bold; font-size: 14px;">${item.name[currentLang]}</div>
+                                <div style="color: var(--gold-light); font-size: 12px;">${item.priceNum.toLocaleString()} ${t.currency}</div>
+                            </div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                                <span>${cart[id]}</span>
+                                <button class="qty-btn" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            listContainer.innerHTML = html;
+        }
+
+        function sendWhatsAppOrder() {
+            const t = i18n[currentLang];
+            let message = `*داواکاری نوێ - KAFFA ROYAL*\n-------------------------\n`;
+            let totalPrice = 0;
+
+            for (let id in cart) {
+                const item = menuItems.find(i => i.id == id);
+                if (item) {
+                    const itemTotal = item.priceNum * cart[id];
+                    totalPrice += itemTotal;
+                    message += `• *${item.name[currentLang]}* (${cart[id]}x) = ${itemTotal.toLocaleString()} ${t.currency}\n`;
+                }
+            }
+
+            message += `-------------------------\n*${t.total}* ${totalPrice.toLocaleString()} ${t.currency}`;
+            window.open(`https://wa.me/${cafeWhatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        let deferredPrompt;
+        const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            pwaInstallBtn.style.display = 'flex';
+        });
+
+        pwaInstallBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        pwaInstallBtn.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+
+        changeLanguage('ckb');
+    </script>
+</body>
+</html>
